@@ -20,8 +20,18 @@ public class ClassificazioneImpiegato implements IClassificazionePagamento {
         
         Double totCompOrdinario = numOreOrdinarie * COMPENSO_ORARIO_ORDINARIO.doubleValue();
         Double totCompStraordinario = numOreStraordinarie * COMPENSO_ORARIO_STRAORDINARIO.doubleValue();
-    
-        // TODO: chiama stampa busta paga
+        Double totCompensi = totCompOrdinario + totCompStraordinario;
+        
+        RegistrazioneBustaPagaImpiegato rb = new RegistrazioneBustaPagaImpiegato();
+        rb.risorsa = risorsa;
+        rb.numOreOrdinarie = numOreOrdinarie;
+        rb.numOreStraordinarie = numOreStraordinarie;
+        rb.compOrarioOrdinario = COMPENSO_ORARIO_ORDINARIO;
+        rb.compOrarioStraordinario = COMPENSO_ORARIO_STRAORDINARIO;
+        rb.totCompensoOrdinario = totCompOrdinario;
+        rb.totCompensoStraordinario = totCompStraordinario;
+        rb.totCompensi = totCompensi;
+        rb.registra();
     }
     
     private Integer calcolaNumOreOrdinarie() {

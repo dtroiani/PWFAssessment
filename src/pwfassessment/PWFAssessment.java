@@ -24,7 +24,7 @@ public class PWFAssessment {
 
         while (true) {
             // lettura e controllo parametri di input da utente
-            System.out.print("Digitare anno e mese [nel formato yyyy<spazio>mm] oppure Q per uscire");
+            System.out.print("Digitare anno e mese [nel formato yyyy<spazio>mm] oppure Q per uscire: ");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
             String input = br.readLine();

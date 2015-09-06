@@ -23,7 +23,6 @@ public class ClassificazioneManager implements IClassificazionePagamento {
             compenso = ((ricavi - costi) * 100 / PERC_REDDITO_PER_COMPENSO) / NUM_MENSILITA;
         }
         
-        // TODO: stampa busta paga
         RegistrazioneBustaPagaManager rbp = new RegistrazioneBustaPagaManager();
         rbp.risorsa = risorsa;
         rbp.compenso = compenso;

@@ -18,7 +18,6 @@ final static Integer COMPENSO_ORARIO_ORDINARIO = 150;
         Integer numGiorniLavorati = calcolaNumGiorniLavorati();
         Double totCompenso = numGiorniLavorati * COMPENSO_ORARIO_ORDINARIO.doubleValue();
         
-        // TODO: chiama stampa busta paga
         RegistrazioneBustaPagaConsulente rbp = new RegistrazioneBustaPagaConsulente();
         rbp.risorsa = risorsa;
         rbp.numGiorni = numGiorniLavorati;
