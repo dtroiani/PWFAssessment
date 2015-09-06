@@ -1,0 +1,25 @@
+Punti principali:
+- delineare workflow programma principale
+    - implementare lettura risorse
+- implementare lettura bilancio (solo quelli di un anno o li salvo tutti?)
+- implementare lettura strisciate badge (solo quelli di un anno e di un mese o li salvo tutti?)
+- implementare calcolo ore lavorate in un giorno da una risorsa
+- parametrizzare percorso file risorse, etc.
+
+
+
+
+
+
+Unit test:
+calcolo ore lavorate in un giorno da una risorsa -> strisciate badge
+
+calcolo ore ordinarie lavorate (da un impiegato)
+calcolo ore straordinarie lavorate (da un impiegato)
+
+calcolo giorni lavorati (da un consulente)
+
+calcolo totale compenso di un impiegato
+calcolo totale compenso di un consulente
+calcolo totale compenso di un manager
+
