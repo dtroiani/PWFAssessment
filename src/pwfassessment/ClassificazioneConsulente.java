@@ -5,17 +5,28 @@
  */
 package pwfassessment;
 
+import java.util.Iterator;
+
 /**
  *
  * @author DanieleT
  */
 public class ClassificazioneConsulente implements IClassificazionePagamento {
+    
+    final static Integer COMPENSO_ORARIO_ORDINARIO = 150;    
+    final static Integer GIORNO_LAVORATO_IN_MIN = 420;  // equivalente a 7 ore
+    
+    String pathFileStrisciateBadge;
+    String sepFileStrisciateBadge;
 
-final static Integer COMPENSO_ORARIO_ORDINARIO = 150;    
+    public ClassificazioneConsulente(String pathFileStrisciateBadge, String sepFileStrisciateBadge) {
+        this.pathFileStrisciateBadge = pathFileStrisciateBadge;
+        this.sepFileStrisciateBadge = sepFileStrisciateBadge;
+    }
     
     @Override
     public void calcolaBustaPaga(Risorsa risorsa, Integer anno, Integer mese) {
-        Integer numGiorniLavorati = calcolaNumGiorniLavorati();
+        Integer numGiorniLavorati = calcolaNumGiorniLavorati(risorsa.getMatricola(), anno, mese);
         Double totCompenso = numGiorniLavorati * COMPENSO_ORARIO_ORDINARIO.doubleValue();
         
         RegistrazioneBustaPagaConsulente rbp = new RegistrazioneBustaPagaConsulente();
@@ -25,10 +36,32 @@ final static Integer COMPENSO_ORARIO_ORDINARIO = 150;
         rbp.totCompensi = totCompenso;
         rbp.registra();
     }
-
-    private Integer calcolaNumGiorniLavorati() {
-        // TODO: da implementare
-        return 0;
+    
+    private Integer calcolaNumGiorniLavorati(String matricola, Integer anno, Integer mese) {
+        Integer numGiorni = 0;
+        IRepositoryStrisciateBadge fileStrisciateBadge = new FileRepositoryStrisciateBadge(pathFileStrisciateBadge, sepFileStrisciateBadge);
+        Iterator<StrisciataBadge> strisciateBadge = fileStrisciateBadge.trovaPer(matricola, anno, mese);
+        
+        Integer curMinLavoro = 0;
+        Integer curGiorno = 0;
+        while (strisciateBadge.hasNext()) {
+            StrisciataBadge sb = strisciateBadge.next();
+            if (curGiorno == 0) curGiorno = sb.getGiorno();
+            if (curGiorno.equals(sb.getGiorno())) {
+                curMinLavoro += sb.calcolaMinutiTempoLavorato();
+            } else {
+                if (curMinLavoro >= GIORNO_LAVORATO_IN_MIN) {
+                   ++numGiorni; 
+                }
+                curMinLavoro = sb.calcolaMinutiTempoLavorato();
+                curGiorno = sb.getGiorno();
+            }
+        }
+        if (curMinLavoro >= GIORNO_LAVORATO_IN_MIN) {
+           ++numGiorni; 
+        }
+        
+        return numGiorni;
     }
     
 }

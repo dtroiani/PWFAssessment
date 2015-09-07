@@ -11,13 +11,13 @@ package pwfassessment;
  */
 public class ClassificazionePagamentoFactory {
 
-    static public IClassificazionePagamento creaIstanza(ClassificazioneRisorsaEnum cr) {
+    static public IClassificazionePagamento creaIstanza(ClassificazioneRisorsaEnum cr, String pathFileBadge, String sepFileBadge) {
         if (cr.equals(ClassificazioneRisorsaEnum.Impiegato)) {
             return new ClassificazioneImpiegato();
         } else if (cr.equals(ClassificazioneRisorsaEnum.Manager)) {
             return new ClassificazioneManager();
         } else if (cr.equals(ClassificazioneRisorsaEnum.Consulente)) {
-            return new ClassificazioneConsulente();
+            return new ClassificazioneConsulente(pathFileBadge, sepFileBadge);
         } else {
             throw new IllegalArgumentException(cr.toString());
         }

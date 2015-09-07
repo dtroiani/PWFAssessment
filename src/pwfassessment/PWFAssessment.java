@@ -37,10 +37,11 @@ public class PWFAssessment {
             String sAnno = stInput.nextToken();
             String sMese = stInput.nextToken();
 
-            Integer anno = null, mese = null;
+            Integer anno = Integer.parseInt(sAnno);
+            Integer mese = Integer.parseInt(sMese);
 
             // inizializza dati risorse
-            IRepositoryRisorse fileRisorse = new FileRepositoryRisorse("C:\\Users\\DanieleT\\Dropbox\\assignment-daniele\\risorse.txt", ",");
+            IRepositoryRisorse fileRisorse = new FileRepositoryRisorse("C:\\Users\\dtroiani\\Dropbox\\assignment-daniele\\risorse_sample.txt", ",");
             Iterator<Risorsa> itrRisorse = fileRisorse.trovaTutte();
             // TODO: inizializza dati bilancio
             Bilancio bilancio = null;
@@ -48,7 +49,8 @@ public class PWFAssessment {
             while (itrRisorse.hasNext()) {
                 Risorsa risorsa = itrRisorse.next();
                 System.out.println("Elaborazione busta paga matricola " + risorsa.getMatricola() + " in corso ...");
-                IClassificazionePagamento classePagamento = ClassificazionePagamentoFactory.creaIstanza(risorsa.getClassificazione());
+                IClassificazionePagamento classePagamento = ClassificazionePagamentoFactory.creaIstanza(risorsa.getClassificazione(),
+                        "C:\\Users\\dtroiani\\Dropbox\\assignment-daniele\\badges_sample.txt", ",");
                 classePagamento.calcolaBustaPaga(risorsa, anno, mese);
             }
         }

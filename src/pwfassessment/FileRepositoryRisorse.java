@@ -49,6 +49,7 @@ public class FileRepositoryRisorse implements IRepositoryRisorse {
                     listaRisorse.add(risorsa);
                 }
             }
+            // TODO: chiudere file?
         } catch (IOException ex) {
             Logger.getLogger(FileRepositoryRisorse.class.getName()).log(Level.SEVERE, null, ex);
         }
