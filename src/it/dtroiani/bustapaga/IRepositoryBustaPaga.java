@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pwfassessment;
-
-import java.util.Iterator;
+package it.dtroiani.bustapaga;
 
 /**
  *
  * @author dtroiani
  */
-public interface IRepositoryStrisciateBadge {
+public interface IRepositoryBustaPaga {
 
-    public Iterator<StrisciataBadge> trovaPer(String matricola, Integer anno, Integer mese);
+    void registra();
+    
 }

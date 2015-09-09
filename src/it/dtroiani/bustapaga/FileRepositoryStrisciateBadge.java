@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pwfassessment;
+package it.dtroiani.bustapaga;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,8 +33,8 @@ public class FileRepositoryStrisciateBadge implements IRepositoryStrisciateBadge
     }
 
     @Override
-    public Iterator<StrisciataBadge> trovaPer(String matricola, Integer anno, Integer mese) {
-        List<StrisciataBadge> listaStrisciateBadge = new ArrayList<StrisciataBadge>();
+    public List<StrisciataBadge> trovaPer(String matricola, Integer anno, Integer mese) {
+        List<StrisciataBadge> listaStrisciateBadge = new ArrayList<>();
         Path fileBadge = Paths.get(pathFile);
         try (BufferedReader reader = Files.newBufferedReader(fileBadge, StandardCharsets.ISO_8859_1)) {
             String line;
@@ -52,9 +52,10 @@ public class FileRepositoryStrisciateBadge implements IRepositoryStrisciateBadge
             // TODO: chiudere file?
         } catch (IOException ex) {
             Logger.getLogger(FileRepositoryStrisciateBadge.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RepositoryStrisciateBadgeAccessException();
         }
 
-        return listaStrisciateBadge.iterator();
+        return listaStrisciateBadge;
     }
 
     private StrisciataBadge estraiDa(String matricola, String tsIng, String tsUsc) {

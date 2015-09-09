@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pwfassessment;
+package it.dtroiani.bustapaga;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,8 +33,8 @@ public class FileRepositoryRisorse implements IRepositoryRisorse {
     }
 
     @Override
-    public Iterator<Risorsa> trovaTutte() {
-        List<Risorsa> listaRisorse = new ArrayList<Risorsa>();
+    public List<Risorsa> trovaTutte() {
+        List<Risorsa> listaRisorse = new ArrayList<>();
         Path fileRisorse = Paths.get(pathFile);
         try (BufferedReader reader = Files.newBufferedReader(fileRisorse, StandardCharsets.ISO_8859_1)) {
             String line;
@@ -45,16 +45,17 @@ public class FileRepositoryRisorse implements IRepositoryRisorse {
                     String nome = stLine.nextToken();
                     String cognome = stLine.nextToken();
                     String classificazione = stLine.nextToken();
-                    Risorsa risorsa = new Risorsa(matricola, nome, cognome, ClassificazioneRisorsaEnum.valueOf(classificazione));
+                    Risorsa risorsa = new Risorsa(matricola, nome, cognome, RuoloRisorsaEnum.valueOf(classificazione));
                     listaRisorse.add(risorsa);
                 }
             }
             // TODO: chiudere file?
         } catch (IOException ex) {
             Logger.getLogger(FileRepositoryRisorse.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RepositoryRisorseAccessException();
         }
         
-        return listaRisorse.iterator();
+        return listaRisorse;
     }
 
 }

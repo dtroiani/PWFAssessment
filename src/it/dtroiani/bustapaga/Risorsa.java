@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pwfassessment;
+package it.dtroiani.bustapaga;
 
 /**
  *
@@ -13,13 +13,13 @@ class Risorsa {
     String matricola;
     String nome;
     String cognome;
-    ClassificazioneRisorsaEnum classificazione;
+    RuoloRisorsaEnum ruolo;
 
-    public Risorsa(String matricola, String nome, String cognome, ClassificazioneRisorsaEnum classificazione) {
+    public Risorsa(String matricola, String nome, String cognome, RuoloRisorsaEnum ruolo) {
         this.matricola = matricola;
         this.nome = nome;
         this.cognome = cognome;
-        this.classificazione = classificazione;
+        this.ruolo = ruolo;
     }
 
     public String getMatricola() {
@@ -34,8 +34,8 @@ class Risorsa {
         return cognome;
     }
     
-    public ClassificazioneRisorsaEnum getClassificazione() {
-        return this.classificazione;
+    public RuoloRisorsaEnum getRuolo() {
+        return this.ruolo;
     }
     
 }

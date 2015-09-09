@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pwfassessment;
-
-import java.util.Iterator;
+package it.dtroiani.bustapaga;
 
 /**
  *
- * @author DanieleT
+ * @author dtroiani
  */
-public interface IRepositoryRisorse {
-    public Iterator<Risorsa> trovaTutte();
+public interface IRepositoryBilancio {
+    
+    public Bilancio trova(Integer anno) ;
+    
 }

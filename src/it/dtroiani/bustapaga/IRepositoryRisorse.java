@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pwfassessment;
+package it.dtroiani.bustapaga;
+
+import java.util.List;
 
 /**
  *
  * @author DanieleT
  */
-public interface IClassificazionePagamento {
-
-    public void calcolaBustaPaga(Risorsa risorsa, Integer anno, Integer mese);
+public interface IRepositoryRisorse {
+    public List<Risorsa> trovaTutte() ;
 }

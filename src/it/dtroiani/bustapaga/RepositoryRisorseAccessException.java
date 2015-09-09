@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pwfassessment;
+package it.dtroiani.bustapaga;
 
 /**
  *
- * @author DanieleT
+ * @author dtroiani
  */
-class DettaglioStrisciate {
+public class RepositoryRisorseAccessException extends RuntimeException {
     
 }
