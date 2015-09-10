@@ -49,7 +49,6 @@ public class FileRepositoryStrisciateBadge implements IRepositoryStrisciateBadge
                     }
                 }
             }
-            // TODO: chiudere file?
         } catch (IOException ex) {
             Logger.getLogger(FileRepositoryStrisciateBadge.class.getName()).log(Level.SEVERE, null, ex);
             throw new RepositoryStrisciateBadgeAccessException();
