@@ -1,0 +1,25 @@
+1. quale processo hai seguito?
+
+Inizialmente ho provato ad implementare il sistema secondo il modello TDD ma facevo fatica a scrivere i primi test e, preso dallo sconforto per il tempo che trascorreva, ho adottato un modello più tradizionale.
+All'inizio ho tracciato il flusso del programma per scomporlo in parti più piccole.
+
+Start => Acquisizione Dati Input => Lettura Risorse => Iterazione Risorsa => Lettura Dati (Strisciate Badge/Bilancio) per calcolo busta paga => Calcolo Busta Paga => Salvataggio Busta Paga
+
+2. qual e' il primo passo che hai effettuato e perche'?
+
+Ho cercato di "separare" le classi di dominio dai dispositivi esterni usati per l'input/output, le astrazioni dei dispositivi sono state modellate con interfacce java (seguendo lo stile di Architettura Esagonale di Alistair Cockburn)
+Poi ho cercato di "isolare" il codice che caratterizzava ogni ruolo di risorsa (Impiegato, Manager e Consulente) al fine di evitare codice con if-else
+ 
+3. quanto avevi stimato inizialmente lo sforzo complessivo per le funzionalita' da realizzare e qual e' stato lo sforzo effettivo (se lavori in termini di pomodori, meglio)
+
+Stima iniziale sforzo:	18   ore (equiv. a 36 pomodori da 30 min.)
+Sforzo effettivo:		22.5 ore (equiv. a 45 pomodori da 30 min.)
+
+4. hai realizzato diagrammi? quali e perche'?
+
+5. cosa ti ha dato maggiori difficolta'
+
+Approcciare lo sviluppo secondo il modello TDD
+Identificare le diverse "responsabilità" nel sistema ed assegnarle alle classi.
+Isolare la classe di calcolo della busta paga dalla classe di salvataggio della busta paga su filesystem
+
