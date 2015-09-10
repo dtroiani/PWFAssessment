@@ -11,6 +11,6 @@ package it.dtroiani.bustapaga;
  */
 public interface IRepositoryBustaPaga {
 
-    void registra();
+    void salva();
     
 }
