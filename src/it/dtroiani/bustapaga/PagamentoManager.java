@@ -62,8 +62,8 @@ public class PagamentoManager implements IPagamento {
     }
 
     @Override
-    public void registra() {
+    public void salvaSuFile() {
         FileRepositoryBustaPagaManager rbp = new FileRepositoryBustaPagaManager(this);
-        rbp.registra();
+        rbp.salva();
     }    
 }
