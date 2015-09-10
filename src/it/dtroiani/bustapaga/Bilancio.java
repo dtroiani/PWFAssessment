@@ -5,16 +5,18 @@
  */
 package it.dtroiani.bustapaga;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author DanieleT
  */
 class Bilancio {
     private final Integer anno;
-    private final Double ricavi;
-    private final Double costi;
+    private final BigDecimal ricavi;
+    private final BigDecimal costi;
 
-    public Bilancio(Integer anno, Double ricavi, Double costi) {
+    public Bilancio(Integer anno, BigDecimal ricavi, BigDecimal costi) {
         this.anno = anno;
         this.ricavi = ricavi;
         this.costi = costi;
@@ -24,11 +26,11 @@ class Bilancio {
         return anno;
     }
 
-    public Double getRicavi() {
+    public BigDecimal getRicavi() {
         return ricavi;
     }
 
-    public Double getCosti() {
+    public BigDecimal getCosti() {
         return costi;
     }
 
