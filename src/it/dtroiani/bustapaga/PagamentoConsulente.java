@@ -63,9 +63,9 @@ public class PagamentoConsulente implements IPagamento {
     }
 
     @Override    
-    public void registra() {
+    public void salvaSuFile() {
         FileRepositoryBustaPagaConsulente rbp = new FileRepositoryBustaPagaConsulente(this);
-        rbp.registra();
+        rbp.salva();
     }
     
     private int calcolaNumGiorniLavorati(String matricola, Integer anno, Integer mese) {
