@@ -5,18 +5,21 @@
  */
 package it.dtroiani.bustapaga;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  *
  * @author DanieleT
  */
 public class PagamentoManager implements IPagamento {
-    final static Integer PERC_COMPENSO_SU_REDDITO = 5;
-    final static Integer NUM_MENSILITA = 12;
+    final static Double PERC_COMPENSO_SU_REDDITO = (double)5;
+    final static int NUM_MENSILITA = 12;
     
     private Risorsa risorsa;
     IRepositoryBilancio repBilancio;
     private Integer anno, mese;
-    private Double compenso;
+    private BigDecimal compenso = BigDecimal.ZERO;
 
     public PagamentoManager(IRepositoryBilancio repBilancio) {
         this.repBilancio = repBilancio;
@@ -34,7 +37,7 @@ public class PagamentoManager implements IPagamento {
         return mese;
     }
 
-    public Double getCompenso() {
+    public BigDecimal getCompenso() {
         return compenso;
     }    
     
@@ -49,12 +52,13 @@ public class PagamentoManager implements IPagamento {
     public void calcolaBustaPaga() {
         Bilancio bilancio = repBilancio.trova(anno);
         
-        if (bilancio.getRicavi() > bilancio.getCosti()) {
-            compenso = ((bilancio.getRicavi() - bilancio.getCosti()) * PERC_COMPENSO_SU_REDDITO / 100) / NUM_MENSILITA;
+        // compenso solo in caso di utile, risultato con arrotondamento matematico a 2 cifre decimali
+        if (bilancio.getRicavi().compareTo(bilancio.getCosti()) > 0) {
+            compenso = ((bilancio.getRicavi().subtract(bilancio.getCosti())).
+                    multiply(new BigDecimal(PERC_COMPENSO_SU_REDDITO)).
+                    divide(new BigDecimal(100)).
+                    divide(new BigDecimal(NUM_MENSILITA), 2, RoundingMode.HALF_UP));
         }
-        // TODO: meglio arrotondamento matematico a 2 cifre decimali
-        //new BigDecimal(d).setScale(2 , BigDecimal.ROUND_UP).doubleValue();
-        compenso = (Math.rint(compenso * 100) / 100);
     }
 
     @Override
