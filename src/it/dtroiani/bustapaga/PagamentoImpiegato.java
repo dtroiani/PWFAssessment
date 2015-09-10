@@ -5,6 +5,7 @@
  */
 package it.dtroiani.bustapaga;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,19 +14,19 @@ import java.util.List;
  * @author DanieleT
  */
 public class PagamentoImpiegato implements IPagamento {
-    final static Integer COMPENSO_ORARIO_ORDINARIO = 10;
-    final static Integer COMPENSO_ORARIO_STRAORDINARIO = 15;
-    final static Integer SOGLIA_MIN_ORARIO_ORDINARIO = 480; /* equivalente a 8 hh */
+    final static BigDecimal COMPENSO_ORARIO_ORDINARIO = new BigDecimal(10);
+    final static BigDecimal COMPENSO_ORARIO_STRAORDINARIO = new BigDecimal(15);
+    final static int SOGLIA_MIN_ORARIO_ORDINARIO = 480; /* equivalente a 8 hh */
     
     private Risorsa risorsa;
     private Integer anno, mese;
     IRepositoryStrisciateBadge repBadge;
     
-    private Integer numOreOrdinarie = 0;
-    private Integer numOreStraordinarie = 0;
-    private Double totCompensoOrdinario;
-    private Double totCompensoStraordinario;
-    private Double totCompensi;
+    private int numOreOrdinarie = 0;
+    private int numOreStraordinarie = 0;
+    private BigDecimal totCompensoOrdinario;
+    private BigDecimal totCompensoStraordinario;
+    private BigDecimal totCompensi;
     
     public PagamentoImpiegato(IRepositoryStrisciateBadge repBadge) {
         this.repBadge = repBadge;
@@ -43,23 +44,23 @@ public class PagamentoImpiegato implements IPagamento {
         return mese;
     }
 
-    public Integer getNumOreOrdinarie() {
+    public int getNumOreOrdinarie() {
         return numOreOrdinarie;
     }
 
-    public Integer getNumOreStraordinarie() {
+    public int getNumOreStraordinarie() {
         return numOreStraordinarie;
     }
 
-    public Double getTotCompensoOrdinario() {
+    public BigDecimal getTotCompensoOrdinario() {
         return totCompensoOrdinario;
     }
 
-    public Double getTotCompensoStraordinario() {
+    public BigDecimal getTotCompensoStraordinario() {
         return totCompensoStraordinario;
     }
 
-    public Double getTotCompensi() {
+    public BigDecimal getTotCompensi() {
         return totCompensi;
     }
 
@@ -73,10 +74,9 @@ public class PagamentoImpiegato implements IPagamento {
     @Override
     public void calcolaBustaPaga() {
         calcolaNumOreLavorate(risorsa.getMatricola(), anno, mese);
-        
-        totCompensoOrdinario = numOreOrdinarie * COMPENSO_ORARIO_ORDINARIO.doubleValue();
-        totCompensoStraordinario = numOreStraordinarie * COMPENSO_ORARIO_STRAORDINARIO.doubleValue();
-        totCompensi = totCompensoOrdinario + totCompensoStraordinario;
+        totCompensoOrdinario = COMPENSO_ORARIO_ORDINARIO.multiply(new BigDecimal(numOreOrdinarie)).setScale(2);
+        totCompensoStraordinario = COMPENSO_ORARIO_STRAORDINARIO.multiply(new BigDecimal(numOreStraordinarie)).setScale(2);
+        totCompensi = totCompensoOrdinario.add(totCompensoStraordinario);
     }
     
     @Override
@@ -112,7 +112,7 @@ public class PagamentoImpiegato implements IPagamento {
         numOreStraordinarie += convertiInNumOreStraordinarie(curMinLavoro);
     }
     
-    private Integer convertiInNumOreOrdinarie(Integer minLavorati) {
+    private int convertiInNumOreOrdinarie(Integer minLavorati) {
         if (minLavorati >= SOGLIA_MIN_ORARIO_ORDINARIO) {
             return SOGLIA_MIN_ORARIO_ORDINARIO / 60;
         } else {
@@ -120,7 +120,7 @@ public class PagamentoImpiegato implements IPagamento {
         }
     }
     
-    private Integer convertiInNumOreStraordinarie(Integer minLavorati) {
+    private int convertiInNumOreStraordinarie(Integer minLavorati) {
         Integer minStraordinari = minLavorati - SOGLIA_MIN_ORARIO_ORDINARIO;
         if (minStraordinari > 0) {
             Integer ore = minStraordinari / 60;
