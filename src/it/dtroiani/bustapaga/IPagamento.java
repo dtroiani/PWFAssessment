@@ -13,5 +13,5 @@ public interface IPagamento {
 
     public void inizializza(Risorsa risorsa, Integer anno, Integer mese);
     public void calcolaBustaPaga();
-    public void registra();
+    public void salvaSuFile();
 }
