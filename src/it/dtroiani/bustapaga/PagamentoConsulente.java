@@ -5,6 +5,7 @@
  */
 package it.dtroiani.bustapaga;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,15 +15,15 @@ import java.util.List;
  */
 public class PagamentoConsulente implements IPagamento {
     
-    public final static Integer COMPENSO_ORARIO_ORDINARIO = 150;    
-    public final static Integer GIORNO_LAVORATO_IN_MIN = 420;  // equivalente a 7 ore
+    public final static BigDecimal COMPENSO_ORARIO_ORDINARIO = BigDecimal.valueOf((double) 150);    
+    public final static int GIORNATA_LAVORATIVA_IN_MIN = 420;  // equivalente a 7 ore
     
     private Risorsa risorsa;
     private Integer anno, mese;
     private final IRepositoryStrisciateBadge repBadge; 
     
-    private Integer numGiorniLavorati;
-    private Double totCompenso;
+    private int numGiorniLavorati;
+    private BigDecimal totCompenso;
     
     public PagamentoConsulente(IRepositoryStrisciateBadge repBadge) {
         this.repBadge = repBadge;
@@ -40,11 +41,11 @@ public class PagamentoConsulente implements IPagamento {
         return mese;
     }
 
-    public Integer getNumGiorniLavorati() {
+    public int getNumGiorniLavorati() {
         return numGiorniLavorati;
     }
 
-    public Double getTotCompenso() {
+    public BigDecimal getTotCompenso() {
         return totCompenso;
     }
 
@@ -58,7 +59,7 @@ public class PagamentoConsulente implements IPagamento {
     @Override
     public void calcolaBustaPaga() {
         numGiorniLavorati = calcolaNumGiorniLavorati(risorsa.getMatricola(), anno, mese);
-        totCompenso = numGiorniLavorati * COMPENSO_ORARIO_ORDINARIO.doubleValue();
+        totCompenso = COMPENSO_ORARIO_ORDINARIO.multiply(new BigDecimal(numGiorniLavorati));
     }
 
     @Override    
@@ -67,11 +68,11 @@ public class PagamentoConsulente implements IPagamento {
         rbp.registra();
     }
     
-    private Integer calcolaNumGiorniLavorati(String matricola, Integer anno, Integer mese) {
-        Integer numGiorni = 0;
+    private int calcolaNumGiorniLavorati(String matricola, Integer anno, Integer mese) {
+        int numGiorni = 0;
         List<StrisciataBadge> strisciateBadge = repBadge.trovaPer(matricola, anno, mese);
         
-        Integer curMinLavoro = 0;
+        int curMinLavoro = 0;
         Integer curGiorno = 0;
         Iterator<StrisciataBadge> itrStrisciateBadge = strisciateBadge.iterator();
         while (itrStrisciateBadge.hasNext()) {
@@ -82,14 +83,14 @@ public class PagamentoConsulente implements IPagamento {
             if (curGiorno.equals(sb.getGiorno())) {
                 curMinLavoro += sb.calcolaMinutiTempoLavorato();
             } else {
-                if (curMinLavoro >= GIORNO_LAVORATO_IN_MIN) {
+                if (curMinLavoro >= GIORNATA_LAVORATIVA_IN_MIN) {
                    ++numGiorni; 
                 }
                 curMinLavoro = sb.calcolaMinutiTempoLavorato();
                 curGiorno = sb.getGiorno();
             }
         }
-        if (curMinLavoro >= GIORNO_LAVORATO_IN_MIN) {
+        if (curMinLavoro >= GIORNATA_LAVORATIVA_IN_MIN) {
            ++numGiorni; 
         }
         
