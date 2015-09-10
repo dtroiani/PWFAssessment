@@ -6,6 +6,7 @@
 package it.dtroiani.bustapaga;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -39,21 +40,21 @@ public class XmlRepositoryBilancio implements IRepositoryBilancio {
 
             Element doc = dom.getDocumentElement();
 
-            Double dRicavi = (double)0;
+            BigDecimal ricavi = BigDecimal.ZERO;
             String sRicavi = getValoreTag(null, doc, "ricavi");
             if (sRicavi != null) {
                 if (!sRicavi.isEmpty()) {
-                    dRicavi = Double.parseDouble(sRicavi);
+                    ricavi = new BigDecimal(sRicavi);
                 }
             }
-            Double dCosti = (double)0;
+            BigDecimal costi = BigDecimal.ZERO;
             String sCosti = getValoreTag(null, doc, "costi");
             if (sCosti != null) {
                 if (!sCosti.isEmpty()) {
-                    dCosti = Double.parseDouble(sCosti);
+                    costi = new BigDecimal(sCosti);
                 }
             }
-            bilancio = new Bilancio(anno, dRicavi, dCosti);
+            bilancio = new Bilancio(anno, ricavi, costi);
             
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(XmlRepositoryBilancio.class.getName()).log(Level.SEVERE, null, ex);
