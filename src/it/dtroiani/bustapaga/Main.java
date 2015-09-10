@@ -25,7 +25,7 @@ import java.util.StringTokenizer;
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * @param args percorso assoluto file di configurazione (opzionale)
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
@@ -86,7 +86,7 @@ public class Main {
                         fileStrisciateBadge, fileBilancio);
                 pagamento.inizializza(risorsa, anno, mese);
                 pagamento.calcolaBustaPaga();
-                pagamento.registra();
+                pagamento.salvaSuFile();
             }
         }
 
