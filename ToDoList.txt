@@ -8,11 +8,17 @@ Punti principali:
 
 Punti aperti:
 - ci sono due omonimi nelle risorse (vedi Sabina Ruzzato, sia manager che consulente), bisognerebbe incorporare nel nome file la matricola
-- convertire nei metodi delle interfacce repository Iterator con List<Elemento>
+
+X Estrarre superclasse AbstractFileRepositoryBustaPaga
+X convertire importi in BigDecimal
+X convertire nei metodi delle interfacce repository Iterator con List<Elemento>
+- codice duplicato in impostaNomeFile() nelle classi FileRepositoryBustaPagaX
 - non mi piace che la classe Pagamento>Ruolo> debba cablare al suo interno la creazione della classe concreta FileRepositoryBustaPaga<Ruolo>
-- puzza su metodo inizializza()
-- estrarre metodo inizializza() e metterlo in una classe antenato PagamentoGenerico
+- non mi piace che il metodo trova(anno) di RepositoryBilancio nel caso di file xml ignori il parametro
+- puzza su metodo inizializza() delle classi PagamentoX
+--- estrarre metodo inizializza() e metterlo in una classe antenato PagamentoGenerico?
 - incorporare anno e mese in una nuova classe
+- organizzare in sottopackage
 
 Unit test:
 calcolo ore lavorate in un giorno da una risorsa -> strisciate badge
