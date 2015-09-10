@@ -80,9 +80,9 @@ public class PagamentoImpiegato implements IPagamento {
     }
     
     @Override
-    public void registra() {
+    public void salvaSuFile() {
         FileRepositoryBustaPagaImpiegato rb = new FileRepositoryBustaPagaImpiegato(this);
-        rb.registra();
+        rb.salva();
     }
     
     private void calcolaNumOreLavorate(String matricola, Integer anno, Integer mese) {
