@@ -50,7 +50,7 @@ public class FileRepositoryBustaPagaImpiegato implements IRepositoryBustaPaga {
             contenuto.append("Ore ordinarie lavorate: ").
                     append(bustaPaga.getNumOreOrdinarie()).
                     append(" * ").
-                    append(PagamentoConsulente.COMPENSO_ORARIO_ORDINARIO).
+                    append(PagamentoImpiegato.COMPENSO_ORARIO_ORDINARIO).
                     append(" = ").
                     append(bustaPaga.getTotCompensoOrdinario());
             contenuto.append("\n");
