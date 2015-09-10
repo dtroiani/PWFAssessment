@@ -74,8 +74,8 @@ public class Main {
             IRepositoryRisorse fileRisorse = new FileRepositoryRisorse(pathFileRisorse, ",");
             // inizializza repository dati badge
             IRepositoryStrisciateBadge fileStrisciateBadge = new FileRepositoryStrisciateBadge(pathFileBadges, ",");
-            // inizializza repository bilancio
-            IRepositoryBilancio fileBilancio = new XmlRepositoryBilancio(pathDirBilanci + File.separator + "bilancio" + anno + ".xml");
+            // inizializza repository bilancio anno precedente
+            IRepositoryBilancio fileBilancio = new XmlRepositoryBilancio(pathDirBilanci + File.separator + "bilancio" + (anno - 1) + ".xml");
 
             List<Risorsa> risorse = fileRisorse.trovaTutte();
             Iterator<Risorsa> itrRisorse = risorse.iterator();
