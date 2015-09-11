@@ -63,6 +63,7 @@ public class PagamentoManager implements IPagamento {
 
     @Override
     public void salvaSuFile() {
+        // TODO: non mi piace, dipende da una classe concreta
         FileRepositoryBustaPagaManager rbp = new FileRepositoryBustaPagaManager(this);
         rbp.salva();
     }    

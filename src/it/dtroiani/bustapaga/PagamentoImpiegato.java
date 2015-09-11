@@ -81,6 +81,7 @@ public class PagamentoImpiegato implements IPagamento {
     
     @Override
     public void salvaSuFile() {
+        // TODO: non mi piace, dipende da una classe concreta
         FileRepositoryBustaPagaImpiegato rb = new FileRepositoryBustaPagaImpiegato(this);
         rb.salva();
     }

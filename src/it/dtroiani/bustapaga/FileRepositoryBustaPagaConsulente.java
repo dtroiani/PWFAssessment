@@ -39,6 +39,7 @@ public class FileRepositoryBustaPagaConsulente extends AbstractFileRepositoryBus
     }
 
     @Override
+    // TODO: non mi piace, codice duplicato
     String impostaNomeFile() {
         StringBuilder nomeFile = new StringBuilder();
         nomeFile.append(bustaPaga.getAnno()).
