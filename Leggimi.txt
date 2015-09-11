@@ -1,0 +1,16 @@
+* Istruzioni per il rilascio dell'applicazione *
+
+1. Copiare, o creare, il file di configurazione config.properties in una cartella
+
+2. Valorizzare i parametri riportati nel file di configurazione
+
+percorso_risorse = <percorso a file risorse.txt>
+percorso_badge = <percorso a file badges.txt>
+cartella_bilanci = <percorso a cartella contenente i file xml dei bilanci>
+
+3. Copiare il file PWFAssessment.jar in una cartella
+
+Per lanciare l'applicazione, eseguire il seguente comando:
+
+java -jar "PWFAssessment.jar" <percorso_file_di_configurazione>
+
