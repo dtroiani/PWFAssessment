@@ -25,7 +25,7 @@ public abstract class AbstractFileRepositoryBustaPaga implements IRepositoryBust
         try {
             String contenuto = preparaContenuto();
             fw = scriviFile(impostaNomeFile(), fw, contenuto);
-            scriviSuConsole(contenuto);
+            //scriviSuConsole(contenuto);
         } catch (IOException ex) {
             throw new FileRepositoryBustaPagaException();
         } finally {
