@@ -1,9 +1,13 @@
+* Report conclusivo dell'assessment *
+* Autore: Daniele Troiani *
+
+** Domande e risposte **
 1. quale processo hai seguito?
 
 Inizialmente ho provato ad implementare il sistema secondo il modello TDD ma facevo fatica a scrivere i primi test e, preso dallo sconforto per il tempo che trascorreva, ho adottato un modello più tradizionale.
 All'inizio ho tracciato il flusso del programma per scomporlo in parti più piccole.
 
-Start => Acquisizione Dati Input => Lettura Risorse => Iterazione Risorsa => Lettura Dati (Strisciate Badge/Bilancio) per calcolo busta paga => Calcolo Busta Paga => Salvataggio Busta Paga
+Inizio => Acquisizione Dati Input => Lettura Risorse => Iterazione Risorsa => Lettura Dati Strisciate Badge/Bilancio (per calcolo busta paga) => Calcolo Busta Paga => Salvataggio Busta Paga => End
 
 2. qual e' il primo passo che hai effettuato e perche'?
 
@@ -19,7 +23,6 @@ Sforzo effettivo:		22.5 ore (equiv. a 45 pomodori da 30 min.)
 
 5. cosa ti ha dato maggiori difficolta'
 
-Approcciare lo sviluppo secondo il modello TDD
-Identificare le diverse "responsabilità" nel sistema ed assegnarle alle classi.
-Isolare la classe di calcolo della busta paga dalla classe di salvataggio della busta paga su filesystem
-
+a) Approcciare lo sviluppo di un'applicazione complessa secondo il modello TDD
+b) Identificare le diverse "responsabilità" nel sistema ed assegnarle alle classi
+c) Non fare dipendere la classe di calcolo della busta paga (una per ogni ruolo impiegato) dalla classe "concreta" di salvataggio della busta paga su filesystem.
