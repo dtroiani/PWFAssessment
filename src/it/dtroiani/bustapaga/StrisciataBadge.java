@@ -9,7 +9,7 @@ package it.dtroiani.bustapaga;
  *
  * @author dtroiani
  */
-class StrisciataBadge {
+public class StrisciataBadge {
     public String matricola;
     public Integer anno;
     public Integer mese;
