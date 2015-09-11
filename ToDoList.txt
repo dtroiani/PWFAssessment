@@ -13,7 +13,7 @@ X Estrarre superclasse AbstractFileRepositoryBustaPaga
 X convertire importi in BigDecimal
 X convertire nei metodi delle interfacce repository Iterator con List<Elemento>
 - codice duplicato in impostaNomeFile() nelle classi FileRepositoryBustaPagaX
-- non mi piace che la classe Pagamento>Ruolo> debba cablare al suo interno la creazione della classe concreta FileRepositoryBustaPaga<Ruolo>
+- non mi piace che la classe Pagamento<Ruolo> debba cablare al suo interno la creazione della classe concreta FileRepositoryBustaPaga<Ruolo>
 - non mi piace che il metodo trova(anno) di RepositoryBilancio nel caso di file xml ignori il parametro
 - puzza su metodo inizializza() delle classi PagamentoX
 --- estrarre metodo inizializza() e metterlo in una classe antenato PagamentoGenerico?
