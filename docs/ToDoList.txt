@@ -7,28 +7,24 @@ Punti principali:
 - parametrizzare percorso file risorse, etc.
 
 Considerazioni sui file di esempio forniti:
-- ci sono due omonimi nelle risorse (vedi Sabina Ruzzato, sia manager che consulente), bisognerebbe incorporare nel nome file la matricola
+- ci sono due omonimi nelle risorse (vedi Sabina Ruzzato, sia manager che consulente), bisognerebbe incorporare nel nome file della busta paga la matricola per evitare sovrascritture accidentali
 
-X Estrarre superclasse AbstractFileRepositoryBustaPaga
-X convertire importi in BigDecimal
-X convertire nei metodi delle interfacce repository Iterator con List<Elemento>
+ToDo List:
 - codice duplicato in impostaNomeFile() nelle classi FileRepositoryBustaPagaX
 - non mi piace che la classe Pagamento<Ruolo> debba cablare al suo interno la creazione della classe concreta FileRepositoryBustaPaga<Ruolo>
 - non mi piace che il metodo trova(anno) di RepositoryBilancio nel caso di file xml ignori il parametro
 - puzza su metodo inizializza() delle classi PagamentoX
 --- estrarre metodo inizializza() e metterlo in una classe antenato PagamentoGenerico?
-- incorporare anno e mese in una nuova classe
+- refactoring per incorporare anno e mese (dati di input) in una nuova classe DatiCalcolo
 - organizzare in sottopackage
 
 Unit test:
 calcolo ore lavorate in un giorno da una risorsa -> strisciate badge
-
 calcolo ore ordinarie lavorate (da un impiegato)
 calcolo ore straordinarie lavorate (da un impiegato)
-
 calcolo giorni lavorati (da un consulente)
-
 calcolo totale compenso di un impiegato
 calcolo totale compenso di un consulente
 calcolo totale compenso di un manager
+etc. etc.
 
